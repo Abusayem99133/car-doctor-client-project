@@ -12,7 +12,7 @@ const Login = () => {
           <img src={img} alt="" className="mr-12" />
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onClick={handleLogin} className="card-body">
+          <form onSubmit={handleLogin} className="card-body">
             <h1 className="text-3xl text-center font-bold">Login now!</h1>
             <div className="form-control">
               <label className="label">
