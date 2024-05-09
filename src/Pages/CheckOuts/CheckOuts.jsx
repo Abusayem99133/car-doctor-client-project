@@ -1,18 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import CheckOutes from "./CheckOutes";
+import axios from "axios";
 
 const CheckOuts = () => {
   const { user } = useContext(AuthContext);
   const [checkouts, setCheckOuts] = useState([]);
   const url = `http://localhost:5000/checkOuts?email=${user?.email}`;
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setCheckOuts(data);
-      });
+    axios.get(url, { withCredentials: true }).then((res) => {
+      setCheckOuts(res.data);
+    });
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setCheckOuts(data);
+    // });
   }, [url]);
   const handleDelete = (id) => {
     const proceed = confirm("Are You sure you want to delete");
